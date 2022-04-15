@@ -9,16 +9,18 @@
  * @return {number}
  */
 
-var findMedianSortedArrays = function(nums1, nums2) {
+ var findMedianSortedArrays = function(nums1, nums2) {
     let n1 = nums1.length;
     let n2 = nums2.length;
+    
+    if(n1 === 0 && n2 === 0) return 0.0;
     if(n1 > n2){
         return findMedianSortedArrays(nums2, nums1);
     }
     let low = 0;
     let high = n1;
     while(low<=high) {
-        let partitionX = Math.floor((low + high) / 2);
+        let partitionX = Math.floor(low + (high - low) / 2);
         let partitionY = Math.floor((n1+n2)/2) - partitionX;
         let L1 = (partitionX === 0) ? -Infinity : nums1[partitionX-1];
         let R1 = (partitionX === n1) ? Infinity : nums1[partitionX];
